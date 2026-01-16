@@ -1,26 +1,48 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html {
+  --line-color: #5183e6;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html.dark {
+  --line-color: rgba(255, 255, 255, 0.2);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.borderBlack {
+  @apply border border-black/10;
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-400 via-pink-400 to-[#AB8BFF] bg-clip-text text-transparent;
+  }
+
+  .text-undergraduate-dark {
+    @apply bg-gradient-to-r from-indigo-300 via-pink-50 to-indigo-50 bg-clip-text text-transparent;
+  }
+
+  .text-undergraduate-light {
+    @apply bg-gradient-to-r from-indigo-600 via-pink-500 to-indigo-500 bg-clip-text text-transparent;
+  }
+
+  .text-name-dark {
+    @apply bg-gradient-to-r from-pink-200 via-white to-blue-300 bg-clip-text text-transparent;
+  }
+
+  .text-name-light {
+    @apply bg-gradient-to-r from-pink-500 via-white to-blue-500 bg-clip-text text-transparent;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-effect:hover {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
 }
