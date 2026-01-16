@@ -25,14 +25,15 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-gray-50 text-gray-950 relative pt-28 sm:pt-36 dark:bg-black dark:text-gray-50 dark:text-opacity-90`}
       >
+        {/* Light Mode Backgrounds (Lighter Blues) */}
         <div
-          className="bg-[#f8a058] absolute top-[-6rem] -z-10 right-[11rem] h-[31.25rem] w-[31.25rem] rounded-full blur-[10rem]
-        sm:w-[68.75rem] "
+          className="bg-[#93c5fd] absolute top-[-6rem] -z-10 right-[11rem] h-[31.25rem] w-[31.25rem] rounded-full blur-[10rem] opacity-70
+  sm:w-[68.75rem] dark:bg-[#3b82f6] dark:opacity-90"
         ></div>
 
         <div
-          className="bg-[#4456fbcc] absolute top-[-1rem] -z-10 left-[-35rem] h-[31.25rem] w-[50rem] rounded-full blur-[10rem]
-        sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem]"
+          className="bg-[#7dd3fc] absolute top-[-1rem] -z-10 left-[-35rem] h-[31.25rem] w-[50rem] rounded-full blur-[10rem] opacity-60
+  sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] dark:bg-[#0ea5e9] dark:opacity-80"
         ></div>
 
         <ThemeContextProvider>
