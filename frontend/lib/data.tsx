@@ -1,11 +1,4 @@
-import {
-  Home,
-  User,
-  FolderOpen,
-  Code2,
-  GraduationCap,
-  Mail,
-} from "lucide-react";
+import { Home, User, FolderOpen, Code2, Sparkles, Mail } from "lucide-react";
 
 export const links = [
   {
@@ -14,9 +7,9 @@ export const links = [
     icon: Home,
   },
   {
-    name: "About",
-    hash: "#about",
-    icon: User,
+    name: "Services",
+    hash: "#services",
+    icon: Sparkles,
   },
   {
     name: "Projects",
@@ -24,14 +17,14 @@ export const links = [
     icon: FolderOpen,
   },
   {
-    name: "Skills",
-    hash: "#skills",
-    icon: Code2,
+    name: "About Us",
+    hash: "#about",
+    icon: User,
   },
   {
     name: "Experience",
     hash: "#experience",
-    icon: GraduationCap,
+    icon: Code2,
   },
   {
     name: "Contact",
