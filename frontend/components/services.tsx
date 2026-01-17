@@ -17,7 +17,6 @@ import {
   Zap,
   Globe,
   Users,
-  BriefcaseBusiness,
 } from "lucide-react";
 
 const services = [
@@ -116,9 +115,25 @@ export default function Services() {
       transition={{ delay: 0.175 }}
       id="services"
     >
-      {/* Decorative background elements (DESKTOP ONLY) */}
-      <div className="hidden sm:block absolute -top-20 -right-20 w-64 h-64 bg-blue-300/10 dark:bg-blue-500/5 rounded-full blur-3xl -z-10"></div>
-      <div className="hidden sm:block absolute -bottom-20 -left-20 w-64 h-64 bg-purple-300/10 dark:bg-purple-500/5 rounded-full blur-3xl -z-10"></div>
+      {/* Subtle grid with faded edges – light & dark safe */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div
+          className="absolute inset-0 opacity-[0.12] dark:opacity-[0.18]"
+          style={{
+            backgroundImage: `
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px)
+      `,
+            backgroundSize: "60px 60px",
+
+            /* IMPORTANT FIX */
+            maskImage:
+              "linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0))",
+            WebkitMaskImage:
+              "linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0))",
+          }}
+        />
+      </div>
 
       <SectionHeading>Our Services</SectionHeading>
 
@@ -204,7 +219,7 @@ export default function Services() {
               {/* Main card */}
               <div
                 className={`
-                relative p-6 rounded-2xl border 
+                relative p-6 rounded-3xl border 
                 bg-white/70 dark:bg-gray-800/70 
                 backdrop-blur-sm
                 border-gray-200/50 dark:border-gray-700/50
