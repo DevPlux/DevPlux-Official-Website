@@ -18,7 +18,10 @@ import {
   Cpu,
   Globe,
   Users,
+  Briefcase,
+  BriefcaseBusiness,
 } from "lucide-react";
+import { BsBag, BsSuitcase } from "react-icons/bs";
 
 const services = [
   {
@@ -291,62 +294,143 @@ export default function Services() {
             return (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="rounded-2xl border border-gray-200/70 dark:border-gray-800 bg-white dark:bg-gray-900 p-6"
+                initial={{ opacity: 0, y: 50, scale: 0.94 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{
+                  duration: 0.6,
+                  delay: i * 0.12,
+                  type: "spring",
+                  stiffness: 120,
+                  damping: 18,
+                }}
+                whileHover={{
+                  y: -8,
+                  scale: 1.02,
+                  transition: { duration: 0.25 },
+                }}
+                className="group relative rounded-2xl border border-gray-200/70 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 overflow-hidden"
               >
-                <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
-                  <Icon className="w-6 h-6" />
+                {/* Hover glow */}
+                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300">
+                  <div className="absolute -inset-px bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-transparent" />
                 </div>
 
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                {/* Icon */}
+                <motion.div
+                  whileHover={{ rotate: 6, scale: 1.12 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 relative z-10"
+                >
+                  <Icon className="w-6 h-6" />
+                </motion.div>
+
+                {/* Content */}
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white relative z-10">
                   {project.title}
                 </h3>
 
-                <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 leading-relaxed relative z-10">
                   {project.description}
                 </p>
+
+                {/* Bottom accent line */}
+                <div className="absolute bottom-0 left-1/2 h-0.5 w-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent transition-all duration-300 group-hover:w-24 -translate-x-1/2" />
               </motion.div>
             );
           })}
         </div>
       </motion.div>
 
-      {/* CTA Section */}
+      {/* CTA Section – Service-aware */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1 }}
+        initial={{ opacity: 0, y: 40, scale: 0.96 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{
+          duration: 0.6,
+          type: "spring",
+          stiffness: 120,
+          damping: 18,
+        }}
         viewport={{ once: true }}
-        className="mt-20 p-8 rounded-2xl bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 dark:from-blue-500/5 dark:via-purple-500/5 dark:to-pink-500/5 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm"
+        className="mt-24 p-8 sm:p-10 rounded-2xl
+             bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-blue-500/5
+             dark:from-blue-500/5 dark:via-indigo-500/40 dark:to-pink-500/5
+             border border-gray-200/50 dark:border-gray-700/50
+             backdrop-blur-sm"
       >
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="text-left">
-            <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
-              Ready to transform your digital presence?
+        <div className="flex flex-col gap-8">
+          {/* CTA Heading */}
+          <div className="text-center max-w-2xl mx-auto">
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-3">
+              Let’s build something meaningful together
             </h3>
             <p className="text-gray-600 dark:text-gray-300">
-              Let&apos;s discuss how we can help achieve your business goals
+              Whether it’s a commercial product, digital brand presence, or an
+              academic project — we’re ready to collaborate.
             </p>
           </div>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="
-              px-8 py-3 rounded-full
-              bg-gradient-to-r from-blue-600 to-purple-600
-              text-white font-medium
-              hover:shadow-lg hover:shadow-blue-500/25
-              transition-all duration-300
-              flex items-center gap-2
-            "
-          >
-            <Cpu className="w-5 h-5" />
-            Start Your Project
-            <Globe className="w-5 h-5" />
-          </motion.button>
+
+          {/* Service Tags */}
+          <div className="flex flex-wrap justify-center gap-3 text-sm">
+            <span className="px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400">
+              Web & Mobile Development
+            </span>
+            <span className="px-4 py-1.5 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
+              UI / UX Design
+            </span>
+            <span className="px-4 py-1.5 rounded-full bg-pink-500/10 text-pink-600 dark:text-pink-400">
+              Social Media & Branding
+            </span>
+            <span className="px-4 py-1.5 rounded-full bg-green-500/10 text-green-600 dark:text-green-400">
+              Academic & Research Work
+            </span>
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            {/* Primary CTA */}
+            <motion.button
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.95 }}
+              className="
+          px-8 py-3 rounded-full
+          bg-gradient-to-r from-blue-600 to-indigo-600
+          text-white font-medium
+          hover:shadow-lg hover:shadow-blue-500/30
+          transition-all duration-300
+          flex items-center gap-2
+        "
+            >
+              <BriefcaseBusiness className="w-5 h-5" />
+              Start a Business Project
+            </motion.button>
+
+            {/* Secondary CTA */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="
+                px-7 py-3 rounded-full
+                bg-white/70 dark:bg-gray-900/70
+                border border-gray-300/50 dark:border-gray-700/50
+                text-gray-800 dark:text-gray-200
+                hover:bg-white dark:hover:bg-gray-900
+                transition-all duration-300
+                flex items-center gap-2
+              "
+            >
+              <GraduationCap className="w-5 h-5" />
+
+              {/* Mobile */}
+              <span className="sm:hidden">Academic / University</span>
+
+              {/* Desktop */}
+              <span className="hidden sm:inline">
+                Academic / University Collaboration
+              </span>
+            </motion.button>
+          </div>
         </div>
       </motion.div>
     </motion.section>
