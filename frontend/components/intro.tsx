@@ -13,7 +13,6 @@ import {
   BsInstagram,
   BsLinkedin,
 } from "react-icons/bs";
-import { HiDownload } from "react-icons/hi";
 import { useSectionInView } from "@/lib/hook";
 import { useActiveSectionContext } from "@/context/active-section-context";
 
