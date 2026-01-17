@@ -33,7 +33,7 @@ export default function Navbar() {
     Experience: TrendingUp,
     Contact: Mail,
     Resume: FileText,
-    About: User, // Fallback for About if needed
+    About: User,
   };
 
   return (
