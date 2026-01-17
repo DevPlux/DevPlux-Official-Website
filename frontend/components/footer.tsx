@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="relative sm:mt-10 overflow-hidden">
+    <footer className="relative -sm:mt-5 overflow-hidden">
       {/* Top gradient divider */}
       <motion.div
         initial={{ width: 0 }}
@@ -63,21 +63,21 @@ export default function Footer() {
 
             <div className="flex items-center gap-4">
               <a
-                href="mailto:janiduchamod25@gmail.com"
+                href="mailto:devplux.info@gmail.com"
                 className="hover:text-blue-600 dark:hover:text-blue-400 transition"
               >
                 <Mail className="w-5 h-5" />
               </a>
               <a
-                href="https://github.com/Janinduchamod2001425"
+                href="https://github.com/DevPlux"
                 target="_blank"
                 className="hover:text-blue-600 dark:hover:text-blue-400 transition"
               >
                 <Github className="w-5 h-5" />
               </a>
               <a
-                href="https://linkedin.com"
-                target="_blank"
+                href="#"
+                // target="_blank"
                 className="hover:text-blue-600 dark:hover:text-blue-400 transition"
               >
                 <Linkedin className="w-5 h-5" />
