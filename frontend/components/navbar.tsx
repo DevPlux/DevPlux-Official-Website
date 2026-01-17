@@ -7,8 +7,6 @@ import Link from "next/link";
 import clsx from "clsx";
 import { useActiveSectionContext } from "@/context/active-section-context";
 import {
-  Menu,
-  X,
   Home,
   User,
   Briefcase,
