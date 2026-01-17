@@ -49,13 +49,18 @@ export default function Projects() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-left"
+        className="text-left relative"
       >
         {/* Heading */}
         <div className="max-w-2xl mb-14 mx-auto text-center">
           <div className="flex items-center justify-center gap-2 mb-4 text-sm text-blue-600 dark:text-blue-400">
             <GraduationCap className="w-4 h-4" />
             <span className="font-medium">Academic & Research</span>
+          </div>
+
+          {/* Decorative blobs (desktop only) */}
+          <div className="hidden sm:block pointer-events-none absolute left-1/2 -translate-x-1/2 -z-10">
+            <div className="absolute -top-40 -left-[48rem] h-[32rem] w-[32rem] rounded-full bg-blue-500/20 dark:bg-blue-500/30 blur-3xl" />
           </div>
 
           <SectionHeading>University Projects</SectionHeading>
@@ -210,6 +215,11 @@ export default function Projects() {
               </span>
             </motion.button>
           </div>
+        </div>
+
+        {/* Decorative blobs (desktop only) */}
+        <div className="hidden sm:block pointer-events-none absolute left-1/2 -translate-x-1/2 -z-10">
+          <div className="absolute top-20 -right-[46rem] h-[22rem] w-[22rem] rounded-full bg-indigo-500/20 dark:bg-indigo-500/40 blur-3xl" />
         </div>
       </motion.div>
     </motion.main>
