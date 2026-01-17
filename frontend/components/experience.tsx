@@ -211,8 +211,8 @@ export default function Experience() {
     >
       {/* Decorative blobs (desktop only) */}
       <div className="hidden sm:block pointer-events-none absolute left-1/2 -translate-x-1/2 -z-10">
-        <div className="absolute -top-40 -left-[50rem] h-[32rem] w-[32rem] rounded-full bg-blue-500/20 dark:bg-blue-500/50 blur-3xl" />
-        <div className="absolute -top-20 -right-[48rem] h-[22rem] w-[22rem] rounded-full bg-indigo-500/20 dark:bg-indigo-500/60 blur-3xl" />
+        <div className="absolute -top-40 -left-[55rem] h-[32rem] w-[32rem] rounded-full bg-blue-500/20 dark:bg-blue-500/30 blur-3xl" />
+        <div className="absolute -top-20 -right-[46rem] h-[22rem] w-[22rem] rounded-full bg-indigo-500/20 dark:bg-indigo-500/40 blur-3xl" />
       </div>
 
       {/* HERO */}
