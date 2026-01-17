@@ -137,7 +137,7 @@ export default function Contact() {
         <a
           className="bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15]
                     active:scale-105 transition cursor-pointer border border-black/10 dark:text-white/60 dark:bg-white/10 relative"
-          href="https://github.com/Janinduchamod2001425"
+          href="https://github.com/DevPlux"
           target="_blank"
         >
           <BsGithub className="hover:text-green-500 transition duration-300 ease-in" />
@@ -173,12 +173,12 @@ export default function Contact() {
             {
               icon: Mail,
               label: "Email",
-              value: "devplux@gmail.com",
+              value: "devplux.info@gmail.com",
             },
             {
               icon: Phone,
               label: "Phone / WhatsApp",
-              value: "+94 78 572 1771",
+              value: "+94 70 299 9173",
             },
             {
               icon: MapPin,
