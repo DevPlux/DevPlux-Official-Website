@@ -9,6 +9,7 @@ import {
   BriefcaseBusiness,
 } from "lucide-react";
 import React from "react";
+import SectionHeading from "@/components/section-heading";
 
 const universityProjects = [
   {
@@ -38,7 +39,7 @@ export default function Projects() {
     <motion.main
       ref={ref}
       id="projects"
-      className="max-w-7xl mx-auto px-4 sm:px-6 pt-20 pb-32 scroll-mt-15"
+      className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-10 scroll-mt-15"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
@@ -57,9 +58,7 @@ export default function Projects() {
             <span className="font-medium">Academic & Research</span>
           </div>
 
-          <h2 className="sm:text-5xl text-4xl font-medium capitalize mb-8 text-center sm:mt-8">
-            University Projects
-          </h2>
+          <SectionHeading>University Projects</SectionHeading>
 
           <p className="mt-3 text-gray-600 dark:text-gray-400">
             Selected academic and research projects developed as part of
@@ -89,7 +88,7 @@ export default function Projects() {
                   scale: 1.02,
                   transition: { duration: 0.25 },
                 }}
-                className="group relative rounded-2xl border border-gray-200/70 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 overflow-hidden"
+                className="group relative rounded-3xl border border-gray-200/70 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 overflow-hidden"
               >
                 {/* Hover glow */}
                 <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300">
