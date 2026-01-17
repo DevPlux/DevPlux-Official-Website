@@ -1,6 +1,15 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+:root {
+  --grid-color: rgba(0, 0, 0, 0.35);
+}
+
+.dark {
+  --grid-color: rgba(255, 255, 255, 0.28);
+}
+
+
 html {
   --line-color: #5183e6;
 }
@@ -46,3 +55,4 @@ html.dark {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(12px);
 }
+
