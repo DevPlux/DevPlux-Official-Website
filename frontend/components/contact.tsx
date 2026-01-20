@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, Variants } from "framer-motion";
 import { useSectionInView } from "@/lib/hook";
 import SectionHeading from "@/components/section-heading";
+import toast from "react-hot-toast";
 import {
   Mail,
   Phone,
@@ -12,16 +13,11 @@ import {
   BriefcaseBusiness,
   GraduationCap,
   Send,
+  Loader2,
 } from "lucide-react";
-import Link from "next/link";
-import {
-  BsArrowDown,
-  BsArrowRight,
-  BsFacebook,
-  BsGithub,
-  BsInstagram,
-  BsLinkedin,
-} from "react-icons/bs";
+
+import { BsFacebook, BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
+import { sendEmail } from "@/actions/sendEmail";
 
 /* ---------------- ANIMATIONS ---------------- */
 
@@ -47,6 +43,38 @@ export default function Contact() {
   const [contactType, setContactType] = useState<
     "Business" | "Academic" | "General"
   >("Business");
+  const [isSending, setIsSending] = useState(false);
+
+  const handleSubmit = async (formData: FormData) => {
+    if (isSending) return; // Prevent multiple submissions
+
+    setIsSending(true);
+
+    try {
+      // Add contact type to form data
+      formData.append("contactType", contactType);
+
+      const { data, error } = await sendEmail(formData);
+
+      if (error) {
+        toast.error(error);
+        return;
+      }
+
+      toast.success("Message sent successfully!");
+
+      // Reset form after successful submission
+      const form = document.querySelector("form") as HTMLFormElement;
+      if (form) {
+        form.reset();
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setIsSending(false);
+    }
+  };
 
   return (
     <motion.section
@@ -68,8 +96,8 @@ export default function Contact() {
         <SectionHeading>Contact Us</SectionHeading>
 
         <p className="mt-4 text-gray-600 dark:text-gray-400 leading-relaxed">
-          Whether you’re planning a business solution, academic project, or
-          research collaboration — we’re ready to help.
+          Whether you're planning a business solution, academic project, or
+          research collaboration — we're ready to help.
         </p>
       </motion.div>
 
@@ -85,7 +113,8 @@ export default function Contact() {
               contactType === "Business"
                 ? "bg-blue-600 text-white"
                 : "bg-blue-500/10 text-blue-600 dark:text-blue-400"
-            }`}
+            } ${isSending ? "opacity-50 cursor-not-allowed" : ""}`}
+          disabled={isSending}
         >
           <BriefcaseBusiness className="inline w-4 h-4 mr-1" />
           Business Project
@@ -98,7 +127,8 @@ export default function Contact() {
               contactType === "Academic"
                 ? "bg-indigo-600 text-white"
                 : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
-            }`}
+            } ${isSending ? "opacity-50 cursor-not-allowed" : ""}`}
+          disabled={isSending}
         >
           <GraduationCap className="inline w-4 h-4 mr-1" />
           Academic / University
@@ -111,7 +141,8 @@ export default function Contact() {
               contactType === "General"
                 ? "bg-gray-800 text-white"
                 : "bg-gray-500/10 text-gray-600 dark:text-gray-400"
-            }`}
+            } ${isSending ? "opacity-50 cursor-not-allowed" : ""}`}
+          disabled={isSending}
         >
           General Inquiry
         </button>
@@ -126,46 +157,77 @@ export default function Contact() {
         }}
       >
         <a
-          className="bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15]
-                    active:scale-105 transition duration-300 ease-in-out cursor-pointer border border-black/10 dark:text-white/60 dark:bg-white/10 relative"
+          className={`bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15]
+                    active:scale-105 transition duration-300 ease-in-out cursor-pointer border border-black/10 dark:text-white/60 dark:bg-white/10 relative
+                    ${isSending ? "pointer-events-none opacity-50" : ""}`}
           href="#"
           target="_blank"
+          tabIndex={isSending ? -1 : 0}
         >
           <BsLinkedin className="hover:text-blue-500 transition duration-300 ease-in" />
         </a>
 
         <a
-          className="bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15]
-                    active:scale-105 transition cursor-pointer border border-black/10 dark:text-white/60 dark:bg-white/10 relative"
+          className={`bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15]
+                    active:scale-105 transition cursor-pointer border border-black/10 dark:text-white/60 dark:bg-white/10 relative
+                    ${isSending ? "pointer-events-none opacity-50" : ""}`}
           href="https://github.com/DevPlux"
           target="_blank"
+          tabIndex={isSending ? -1 : 0}
         >
           <BsGithub className="hover:text-green-500 transition duration-300 ease-in" />
         </a>
 
         <a
-          className="bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15]
-                    active:scale-105 transition cursor-pointer border border-black/10 dark:text-white/60 dark:bg-white/10 relative"
+          className={`bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15]
+                    active:scale-105 transition cursor-pointer border border-black/10 dark:text-white/60 dark:bg-white/10 relative
+                    ${isSending ? "pointer-events-none opacity-50" : ""}`}
           href="#"
           target="_blank"
+          tabIndex={isSending ? -1 : 0}
         >
           <BsFacebook className="hover:text-blue-600 transition duration-300 ease-in" />
         </a>
 
         <a
-          className="bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15]
-                    active:scale-105 transition cursor-pointer border border-black/10 dark:text-white/60 dark:bg-white/10 relative"
+          className={`bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15]
+                    active:scale-105 transition cursor-pointer border border-black/10 dark:text-white/60 dark:bg-white/10 relative
+                    ${isSending ? "pointer-events-none opacity-50" : ""}`}
           href="#"
           target="_blank"
+          tabIndex={isSending ? -1 : 0}
         >
           <BsInstagram className="hover:text-pink-600 transition duration-300 ease-in" />
         </a>
       </motion.div>
 
+      <motion.div
+        className="flex flex-row items-center justify-center text-xs mt-15"
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.1,
+        }}
+      >
+        <p className="text-gray-700 -mt-6 dark:text-white/80">
+          You can contact us directly at{" "}
+          <a
+            href="mailto:devplux.info@gmail.com"
+            className={`underline font-semibold italic dark:text-blue-200 text-blue-800 ${
+              isSending ? "pointer-events-none opacity-50" : ""
+            }`}
+            tabIndex={isSending ? -1 : 0}
+          >
+            devplux.info@gmail.com
+          </a>{" "}
+          or through this form.
+        </p>
+      </motion.div>
+
       {/* ---------------- CONTENT GRID ---------------- */}
       <motion.div
         variants={fadeUp}
-        className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10"
+        className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-10"
       >
         {/* ---------- LEFT: CONTACT INFO ---------- */}
         <div className="space-y-6">
@@ -217,8 +279,13 @@ export default function Contact() {
         <motion.form
           variants={fadeUp}
           className="rounded-3xl border border-gray-200/60 dark:border-gray-800 bg-white/80 dark:bg-gray-900/60 backdrop-blur-sm p-6 sm:p-8 space-y-5"
+          onSubmit={async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.currentTarget);
+            await handleSubmit(formData);
+          }}
         >
-          <input type="hidden" value={contactType} />
+          <input type="hidden" name="contactType" value={contactType} />
 
           <div>
             <label className="text-sm text-gray-600 dark:text-gray-400">
@@ -226,8 +293,11 @@ export default function Contact() {
             </label>
             <input
               type="text"
+              name="senderName"
+              required
               placeholder="Your name"
-              className="mt-2 w-full rounded-xl border border-gray-300/60 dark:border-gray-700 bg-transparent px-4 py-2.5 text-sm outline-none focus:border-blue-500"
+              className="mt-2 w-full rounded-xl border border-gray-300/60 dark:border-gray-700 bg-transparent px-4 py-2.5 text-sm outline-none focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={isSending}
             />
           </div>
 
@@ -237,8 +307,11 @@ export default function Contact() {
             </label>
             <input
               type="email"
+              name="senderEmail"
+              required
               placeholder="you@email.com"
-              className="mt-2 w-full rounded-xl border border-gray-300/60 dark:border-gray-700 bg-transparent px-4 py-2.5 text-sm outline-none focus:border-blue-500"
+              className="mt-2 w-full rounded-xl border border-gray-300/60 dark:border-gray-700 bg-transparent px-4 py-2.5 text-sm outline-none focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={isSending}
             />
           </div>
 
@@ -247,6 +320,8 @@ export default function Contact() {
               Message
             </label>
             <textarea
+              name="message"
+              required
               rows={4}
               placeholder={
                 contactType === "Academic"
@@ -255,18 +330,41 @@ export default function Contact() {
                     ? "Tell us about your business idea or requirements..."
                     : "Write your message..."
               }
-              className="mt-2 w-full rounded-xl border border-gray-300/60 dark:border-gray-700 bg-transparent px-4 py-2.5 text-sm outline-none focus:border-blue-500 resize-none"
+              className="mt-2 w-full rounded-xl border border-gray-300/60 dark:border-gray-700 bg-transparent px-4 py-2.5 text-sm outline-none focus:border-blue-500 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={isSending}
             />
           </div>
 
           <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-full mt-4 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 text-white font-medium flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-blue-500/30 transition"
+            type="submit"
+            whileHover={!isSending ? { scale: 1.04 } : {}}
+            whileTap={!isSending ? { scale: 0.95 } : {}}
+            disabled={isSending}
+            className={`w-full mt-4 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 text-white font-medium flex items-center justify-center gap-2 transition
+              ${
+                isSending
+                  ? "cursor-wait opacity-70"
+                  : "hover:shadow-lg hover:shadow-blue-500/30"
+              }`}
           >
-            <Send className="w-4 h-4" />
-            Send Message
+            {isSending ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                Sending...
+              </>
+            ) : (
+              <>
+                <Send className="w-4 h-4" />
+                Send Message
+              </>
+            )}
           </motion.button>
+
+          {isSending && (
+            <p className="text-center text-xs text-gray-500 dark:text-gray-400 animate-pulse">
+              Please wait while we send your message...
+            </p>
+          )}
         </motion.form>
       </motion.div>
     </motion.section>
