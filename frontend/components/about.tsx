@@ -114,7 +114,7 @@ const teamMembers: TeamMember[] = [
     icon: Palette,
     links: {
       github: "https://github.com/kariyawasam064",
-      linkedin: "https://linkedin.com/",
+      linkedin: "https://www.linkedin.com/in/harsha-chathuranga-29254530a",
     },
   },
   {
