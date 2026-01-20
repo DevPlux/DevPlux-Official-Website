@@ -128,7 +128,7 @@ export default function Contact() {
         <a
           className="bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15]
                     active:scale-105 transition duration-300 ease-in-out cursor-pointer border border-black/10 dark:text-white/60 dark:bg-white/10 relative"
-          href="https://www.linkedin.com/in/janinduchamod/"
+          href="#"
           target="_blank"
         >
           <BsLinkedin className="hover:text-blue-500 transition duration-300 ease-in" />
@@ -146,7 +146,7 @@ export default function Contact() {
         <a
           className="bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15]
                     active:scale-105 transition cursor-pointer border border-black/10 dark:text-white/60 dark:bg-white/10 relative"
-          href="https://github.com/Janinduchamod2001425"
+          href="#"
           target="_blank"
         >
           <BsFacebook className="hover:text-blue-600 transition duration-300 ease-in" />
@@ -155,7 +155,7 @@ export default function Contact() {
         <a
           className="bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15]
                     active:scale-105 transition cursor-pointer border border-black/10 dark:text-white/60 dark:bg-white/10 relative"
-          href="https://github.com/Janinduchamod2001425"
+          href="#"
           target="_blank"
         >
           <BsInstagram className="hover:text-pink-600 transition duration-300 ease-in" />
