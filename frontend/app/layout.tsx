@@ -8,6 +8,7 @@ import Footer from "@/components/footer";
 import ThemeSwitch from "@/components/theme-switch";
 import BackgroundEffects from "@/components/background-effects";
 import ThemeTransition from "@/components/theme-transition";
+import ToastProvider from "@/components/toast-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -47,6 +48,9 @@ export default function RootLayout({
             <ThemeTransition />
 
             {children}
+
+            <ToastProvider />
+
             <Footer />
             <ThemeSwitch />
           </ActiveSectionContextProvider>
