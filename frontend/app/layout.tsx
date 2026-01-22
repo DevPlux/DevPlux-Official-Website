@@ -13,7 +13,7 @@ import ToastProvider from "@/components/toast-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "DevPlux Technologies",
+  title: "DevPlux IT Solutions",
   description:
     "DevPlux Technologies builds modern software solutions, including web, mobile, and AI-powered systems for growing businesses.",
 };
