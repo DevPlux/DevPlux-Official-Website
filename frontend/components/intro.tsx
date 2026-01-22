@@ -12,6 +12,7 @@ import {
   BsGithub,
   BsInstagram,
   BsLinkedin,
+  BsWhatsapp,
 } from "react-icons/bs";
 import { useSectionInView } from "@/lib/hook";
 import { useActiveSectionContext } from "@/context/active-section-context";
@@ -24,7 +25,7 @@ export default function Intro() {
     <section
       ref={ref}
       id="home"
-      className="mb-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem]"
+      className="mb-15 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem]"
     >
       {/*Logo Image with Animation*/}
       <div className="flex items-center justify-center">
@@ -162,54 +163,76 @@ export default function Intro() {
           <BsArrowRight className="opacity-70 group-hover:translate-x-1 transition animate-pulse" />
         </Link>
 
-        <Link
-          href="#contact"
-          className="group flex sm:hidden bg-gray-900 text-white px-6 py-3 items-center gap-2 rounded-full outline-none
-             focus:scale-110 hover:scale-105 hover:bg-gray-950
-             active:scale-105 transition duration-500 ease-in-out mb-5"
-          onClick={() => {
-            setActiveSection("Contact");
-            setTimeOfLastClick(Date.now());
-          }}
-        >
-          Contact us here
-          <BsArrowDown className="opacity-70 group-hover:translate-y-1 transition animate-bounce" />
-        </Link>
-
+        {/*WHATSAPP LINK*/}
         <a
-          className="bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15]
-                    active:scale-105 transition duration-300 ease-in-out cursor-pointer border border-black/10 dark:text-white/60 dark:bg-white/10 relative"
-          href="#"
+          className={`bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-green-400 hover:scale-[1.15]
+              active:scale-105 transition cursor-grab border border-black/10 dark:text-white/60 dark:bg-white/10 relative
+              `}
+          href="https://wa.me/94702999173?text=Hi%20DevPlux%20team,%20I'm%20interested%20in%20discussing%20a%20project%20opportunity.%20Would%20you%20be%20available%20for%20a%20chat?"
           target="_blank"
+          rel="noopener noreferrer"
         >
-          <BsLinkedin className="hover:text-blue-500 transition duration-300 ease-in" />
+          <BsWhatsapp className="hover:text-green-400 transition duration-300 ease-in" />
         </a>
 
+        {/*FACEBOOK LINK*/}
         <a
-          className="bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15]
-                    active:scale-105 transition cursor-pointer border border-black/10 dark:text-white/60 dark:bg-white/10 relative"
-          href="https://github.com/DevPlux"
+          className={`bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-blue-600 hover:scale-[1.15]
+                    active:scale-105 transition cursor-grab border border-black/10 dark:text-white/60 dark:bg-white/10 relative
+                    `}
+          href="https://facebook.com/people/DevPlux/61586762697997/"
           target="_blank"
-        >
-          <BsGithub className="hover:text-green-500 transition duration-300 ease-in" />
-        </a>
-
-        <a
-          className="bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15]
-                    active:scale-105 transition cursor-pointer border border-black/10 dark:text-white/60 dark:bg-white/10 relative"
-          href="#"
-          target="_blank"
+          rel="noopener noreferrer"
         >
           <BsFacebook className="hover:text-blue-600 transition duration-300 ease-in" />
         </a>
 
+        {/*GITHUB LINK*/}
         <a
-          className="bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15]
-                    active:scale-105 transition cursor-pointer border border-black/10 dark:text-white/60 dark:bg-white/10 relative"
-          href="#"
+          className={`bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-purple-500 hover:scale-[1.15]
+                    active:scale-105 transition cursor-grab border border-black/10 dark:text-white/60 dark:bg-white/10 relative
+                    `}
+          href="https://github.com/DevPlux"
           target="_blank"
+          rel="noopener noreferrer"
+        >
+          <BsGithub className="hover:text-purple-500 transition duration-300 ease-in" />
+        </a>
+
+        {/*LINKEDIN LINK*/}
+        <a
+          className={`bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-blue-500 hover:scale-[1.15]
+                    active:scale-105 transition duration-300 ease-in-out cursor-not-allowed border border-black/10 dark:text-white/60 dark:bg-white/10 relative
+                     group`}
+          href="#"
+          onClick={(e) => e.preventDefault()}
+          aria-disabled="true"
+        >
+          <BsLinkedin className="hover:text-blue-500 transition duration-300 ease-in" />
+
+          {/* Custom Tooltip */}
+          <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+            LinkedIn currently unavailable
+            <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-800 rotate-45"></span>
+          </span>
+        </a>
+
+        {/*INSTAGRAM LINK*/}
+        <a
+          className={`bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-pink-600 hover:scale-[1.15]
+              active:scale-105 transition cursor-not-allowed border border-black/10 dark:text-white/60 dark:bg-white/10 relative
+               group`}
+          href="#"
+          onClick={(e) => e.preventDefault()}
+          aria-disabled="true"
         >
           <BsInstagram className="hover:text-pink-600 transition duration-300 ease-in" />
+
+          {/* Custom Tooltip */}
+          <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+            Instagram currently unavailable
+            <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-800 rotate-45"></span>
+          </span>
         </a>
       </motion.div>
     </section>

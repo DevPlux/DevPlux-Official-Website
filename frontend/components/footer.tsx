@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowUpRight, Facebook } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Footer() {
@@ -64,6 +64,7 @@ export default function Footer() {
             <div className="flex items-center gap-4">
               <a
                 href="mailto:devplux.info@gmail.com"
+                rel="noopener noreferrer"
                 className="hover:text-blue-600 dark:hover:text-blue-400 transition"
               >
                 <Mail className="w-5 h-5" />
@@ -71,16 +72,18 @@ export default function Footer() {
               <a
                 href="https://github.com/DevPlux"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-blue-600 dark:hover:text-blue-400 transition"
               >
                 <Github className="w-5 h-5" />
               </a>
               <a
-                href="#"
-                // target="_blank"
+                href="https://facebook.com/people/DevPlux/61586762697997/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-blue-600 dark:hover:text-blue-400 transition"
               >
-                <Linkedin className="w-5 h-5" />
+                <Facebook className="w-5 h-5" />
               </a>
             </div>
 

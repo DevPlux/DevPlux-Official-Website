@@ -17,6 +17,10 @@ import {
   Zap,
   Globe,
   Users,
+  CheckCircle2,
+  BriefcaseBusiness,
+  Cog,
+  Brain,
 } from "lucide-react";
 
 const services = [
@@ -135,7 +139,20 @@ export default function Services() {
         />
       </div>
 
-      <SectionHeading>Our Services</SectionHeading>
+      {/* Heading */}
+      <div className="max-w-2xl mx-auto text-center">
+        <div className="flex items-center justify-center gap-2 sm:-mb-4 mb-5 sm:mt-7 text-sm text-blue-600 dark:text-blue-400">
+          <Brain className="w-4 h-4" />
+          <span className="font-medium">What We Offer</span>
+        </div>
+
+        {/* Decorative blobs (desktop only) */}
+        <div className="hidden sm:block pointer-events-none absolute left-1/2 -translate-x-1/2 -z-10">
+          <div className="absolute -top-40 -left-[48rem] h-[32rem] w-[32rem] rounded-full bg-blue-500/20 dark:bg-blue-500/30 blur-3xl" />
+        </div>
+
+        <SectionHeading>Our Services</SectionHeading>
+      </div>
 
       {/* Services description */}
       <motion.div

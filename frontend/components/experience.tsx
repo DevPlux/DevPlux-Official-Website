@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
-import { motion, Variants } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, Variants, useInView } from "framer-motion";
+import { useRef } from "react";
 import Image, { StaticImageData } from "next/image";
 import { useSectionInView } from "@/lib/hook";
 import SectionHeading from "@/components/section-heading";
@@ -11,12 +12,8 @@ import {
   GraduationCap,
   FlaskConical,
   Code2,
-  Smartphone,
   Database,
   Cpu,
-  GitBranch,
-  Figma,
-  Globe,
   Rocket,
   CheckCircle2,
   ArrowRight,
@@ -24,7 +21,6 @@ import {
 
 import ReactLogo from "@/app/images/tools/React.png";
 import NextDarkLogo from "@/app/images/tools/Next.js.png";
-import NextLightLogo from "@/app/images/tools/NextWhite.png";
 import NodeLogo from "@/app/images/tools/Node Js.png";
 import MongoLogo from "@/app/images/tools/MongoDB.png";
 import PythonLogo from "@/app/images/tools/Python.png";
@@ -148,32 +144,73 @@ const tools: ToolItem[] = [
 ];
 
 const highlights = [
-  { label: "Industry + Academic Blend", value: "Strong" },
-  { label: "University + Client Projects", value: "10+" },
-  { label: "Agile Team Workflow", value: "Yes" },
-  { label: "Research & Experimentation", value: "Yes" },
+  {
+    label: "Industry + Academic Blend",
+    value: "Strong",
+    type: "text" as const,
+  },
+  {
+    label: "University + Client Projects",
+    value: 10,
+    type: "number" as const,
+    suffix: "+",
+  },
+  {
+    label: "Agile Team Workflow",
+    value: "Yes",
+    type: "text" as const,
+  },
+  {
+    label: "Research & Experimentation",
+    value: "Yes",
+    type: "text" as const,
+  },
 ];
 
 /* ------------------------ ANIMATIONS ------------------------ */
 
 const container: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12 } },
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
 };
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 28, scale: 0.98 },
+  hidden: {
+    opacity: 0,
+    y: 28,
+    scale: 0.98,
+  },
   show: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { type: "spring", stiffness: 130, damping: 18 },
+    transition: {
+      type: "spring",
+      stiffness: 130,
+      damping: 18,
+      mass: 0.8,
+    },
   },
 };
 
 const softFade: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  hidden: {
+    opacity: 0,
+    y: 16,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
 };
 
 /* -------------------------- UI BITS -------------------------- */
@@ -194,19 +231,43 @@ function Tag({ children }: { children: React.ReactNode }) {
   );
 }
 
+// Add this helper function at the top
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  return isMobile;
+};
+
 /* -------------------------- COMPONENT -------------------------- */
 
 export default function Experience() {
   const { ref } = useSectionInView("Experience", 0.5);
 
+  // Add a ref for the main container
+  const sectionRef = React.useRef<HTMLElement>(null);
+
   return (
     <motion.section
       ref={ref}
       id="experience"
-      className="scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 py-10 overflow-x-hidden"
+      className="scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 py-10"
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.25 }}
+      viewport={{
+        once: true,
+        amount: 0.15, // Reduced from 0.25 for earlier trigger
+        margin: "-50px", // Adds margin to trigger earlier
+      }}
       variants={container}
     >
       {/* Decorative blobs (desktop only) */}
@@ -216,7 +277,13 @@ export default function Experience() {
       </div>
 
       {/* HERO */}
-      <motion.div variants={fadeUp} className="text-center max-w-3xl mx-auto">
+      <motion.div
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2, margin: "-30px" }}
+        className="text-center max-w-3xl mx-auto"
+      >
         <div className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400">
           <Rocket className="w-5 h-5" />
           <span className="text-sm font-medium">Experience & Work</span>
@@ -243,66 +310,191 @@ export default function Experience() {
         variants={softFade}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.3, margin: "-30px" }}
         className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-5"
       >
-        {highlights.map((h, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 24, scale: 0.96 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{
-              delay: i * 0.08,
-              duration: 0.5,
-              type: "spring",
-              stiffness: 120,
-              damping: 16,
-            }}
-            whileHover={{
-              y: -6,
-              scale: 1.03,
-              transition: { duration: 0.25 },
-            }}
-            className="
-        group relative overflow-hidden
-        rounded-2xl border border-gray-200/60 dark:border-gray-800
-        bg-white/70 dark:bg-gray-900/70
-        backdrop-blur-md
-        p-5 text-left
-        transition-all
-      "
-          >
-            {/* subtle glow on hover */}
-            <div
+        {highlights.map((h, i) => {
+          const ref = useRef(null);
+          const isInView = useInView(ref, {
+            once: true,
+            amount: 0.3,
+            margin: "-20px",
+          });
+          const [displayValue, setDisplayValue] = useState("");
+          const [count, setCount] = useState(0);
+          const [isAnimating, setIsAnimating] = useState(false);
+          const isMobile = useIsMobile();
+
+          // Reset on mount to prevent stale animations
+          useEffect(() => {
+            setDisplayValue("");
+            setCount(0);
+            setIsAnimating(false);
+          }, []);
+
+          // Typewriter effect for text
+          useEffect(() => {
+            if (!isInView || h.type !== "text") return;
+
+            setIsAnimating(true);
+            const textValue = String(h.value);
+            setDisplayValue(""); // Start empty
+
+            let i = 0;
+            const typingSpeed = isMobile ? 80 : 50; // Slower on mobile for reliability
+
+            const typingInterval = setInterval(() => {
+              if (i <= textValue.length) {
+                setDisplayValue(textValue.substring(0, i));
+                i++;
+              } else {
+                clearInterval(typingInterval);
+                setTimeout(() => setIsAnimating(false), 300); // Small delay after completion
+              }
+            }, typingSpeed);
+
+            return () => {
+              clearInterval(typingInterval);
+              setIsAnimating(false);
+            };
+          }, [isInView, h.type, h.value, isMobile]);
+
+          // Count-up effect for numbers
+          useEffect(() => {
+            if (!isInView || h.type !== "number") return;
+
+            setIsAnimating(true);
+            const numValue = Number(h.value);
+            setCount(0); // Start from 0
+
+            const duration = isMobile ? 2000 : 1500; // Longer on mobile
+            const steps = duration / 16; // ~60fps
+            const increment = numValue / steps;
+
+            let current = 0;
+            let step = 0;
+
+            const countInterval = setInterval(() => {
+              step++;
+              current += increment;
+
+              if (step >= steps || current >= numValue) {
+                setCount(numValue);
+                clearInterval(countInterval);
+                setTimeout(() => setIsAnimating(false), 300); // Small delay after completion
+              } else {
+                setCount(Math.floor(current));
+              }
+            }, 16);
+
+            return () => {
+              clearInterval(countInterval);
+              setIsAnimating(false);
+            };
+          }, [isInView, h.type, h.value, isMobile]);
+
+          // Calculate if cursor should be shown
+          const shouldShowCursor =
+            isInView &&
+            isAnimating &&
+            h.type === "text" &&
+            displayValue.length < String(h.value).length;
+
+          return (
+            <motion.div
+              ref={ref}
+              key={i}
+              initial={{ opacity: 0, y: 24, scale: 0.96 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                scale: 1,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.3,
+                margin: "-20px",
+              }}
+              transition={{
+                delay: i * 0.1,
+                duration: 0.6,
+                type: "spring",
+                stiffness: 120,
+                damping: 16,
+              }}
+              whileHover={{
+                y: -6,
+                scale: 1.03,
+                transition: { duration: 0.25 },
+              }}
               className="
-        pointer-events-none absolute inset-0 opacity-0
-        group-hover:opacity-100 transition duration-300
-      "
+                group relative overflow-hidden
+                rounded-2xl border border-gray-200/60 dark:border-gray-800
+                bg-white/70 dark:bg-gray-900/70
+                backdrop-blur-md
+                sm:p-6 p-5 text-left
+                transition-all
+                min-h-[100px] sm:min-h-[100px]
+              "
             >
-              <div className="absolute -inset-px bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-transparent" />
-            </div>
+              {/* subtle glow on hover */}
+              <div
+                className="
+                pointer-events-none absolute inset-0 opacity-0
+                group-hover:opacity-100 transition duration-300
+              "
+              >
+                <div className="absolute -inset-px bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-transparent" />
+              </div>
 
-            {/* label */}
-            <p className="relative z-10 text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-              {h.label}
-            </p>
+              {/* label */}
+              <p className="relative z-10 text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-4">
+                {h.label}
+              </p>
 
-            {/* value */}
-            <p className="relative z-10 mt-2 text-lg font-semibold text-gray-900 dark:text-white">
-              {h.value}
-            </p>
+              {/* animated value */}
+              <div className="relative z-10">
+                {h.type === "number" ? (
+                  <div className="flex items-end">
+                    <span className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white tabular-nums">
+                      {count}
+                    </span>
+                    {h.suffix && (
+                      <span className="text-lg sm:text-2xl text-blue-600 dark:text-blue-400 ml-1 font-bold">
+                        {h.suffix}
+                      </span>
+                    )}
+                  </div>
+                ) : (
+                  <div className="relative">
+                    <span className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white uppercase tracking-wide">
+                      {displayValue}
+                    </span>
+                    {/* Blinking cursor for typewriter effect */}
+                    {shouldShowCursor && (
+                      <span className="absolute -right-1 top-0 w-[2px] h-7 bg-blue-500 dark:bg-blue-400 animate-pulse" />
+                    )}
+                  </div>
+                )}
+              </div>
 
-            {/* bottom accent */}
-            <div
-              className="
-        absolute bottom-0 left-1/2 h-0.5 w-0
-        bg-gradient-to-r from-transparent via-blue-500 to-transparent
-        transition-all duration-300
-        group-hover:w-16 -translate-x-1/2
-      "
-            />
-          </motion.div>
-        ))}
+              {/* Loading skeleton for mobile (hidden after load) */}
+              {isMobile && isAnimating && (
+                <div className="absolute inset-0 bg-white/50 dark:bg-gray-900/50 rounded-2xl animate-pulse" />
+              )}
+
+              {/* bottom accent */}
+              <div
+                className="
+            absolute bottom-0 left-1/2 h-0.5 w-0
+            bg-gradient-to-r from-transparent via-blue-500 to-transparent
+            transition-all duration-300
+            group-hover:w-16 -translate-x-1/2
+          "
+              />
+            </motion.div>
+          );
+        })}
       </motion.div>
 
       {/* DIVIDER */}
@@ -311,7 +503,16 @@ export default function Experience() {
       </div>
 
       {/* ACADEMIC SECTION */}
-      <motion.div variants={fadeUp}>
+      <motion.div
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{
+          once: true,
+          amount: 0.2,
+          margin: "-30px",
+        }}
+      >
         <div className="flex items-center justify-center gap-2 text-blue-600 dark:text-blue-400">
           <GraduationCap className="w-5 sm:w-8  h-5 sm:h-8 " />
           <h3 className="sm:text-3xl text-xl font-semibold">
@@ -330,8 +531,23 @@ export default function Experience() {
             <motion.div
               key={i}
               variants={fadeUp}
-              whileHover={{ y: -8, scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 180, damping: 18 }}
+              initial="hidden"
+              whileInView="show"
+              viewport={{
+                once: true,
+                amount: 0.2,
+                margin: "-20px",
+              }}
+              transition={{
+                delay: i * 0.1,
+                type: "spring",
+                stiffness: 180,
+                damping: 18,
+              }}
+              whileHover={{
+                y: -8,
+                scale: 1.01,
+              }}
               className="group relative rounded-3xl border border-gray-200/60 dark:border-gray-800 bg-white/80 dark:bg-gray-900/60 backdrop-blur-sm p-6 text-left overflow-hidden"
             >
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300">
@@ -388,7 +604,17 @@ export default function Experience() {
       </motion.div>
 
       {/* STARTUP / CLIENT WORK */}
-      <motion.div variants={fadeUp} className="mt-20">
+      <motion.div
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{
+          once: true,
+          amount: 0.2,
+          margin: "-30px",
+        }}
+        className="mt-20"
+      >
         <div className="flex items-center justify-center gap-2 text-blue-600 dark:text-blue-400">
           <Rocket className="w-5 sm:w-8 h-5 sm:h-8" />
           <h3 className="sm:text-3xl text-xl font-semibold">
@@ -401,8 +627,23 @@ export default function Experience() {
             <motion.div
               key={i}
               variants={fadeUp}
-              whileHover={{ y: -8, scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 180, damping: 18 }}
+              initial="hidden"
+              whileInView="show"
+              viewport={{
+                once: true,
+                amount: 0.2,
+                margin: "-20px",
+              }}
+              transition={{
+                delay: i * 0.1,
+                type: "spring",
+                stiffness: 180,
+                damping: 18,
+              }}
+              whileHover={{
+                y: -8,
+                scale: 1.01,
+              }}
               className="group rounded-3xl border border-gray-200/60 dark:border-gray-800 bg-white/80 dark:bg-gray-900/60 backdrop-blur-sm p-6 text-left"
             >
               <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -435,7 +676,17 @@ export default function Experience() {
       </motion.div>
 
       {/* TOOLS & TECHNOLOGIES */}
-      <motion.div variants={fadeUp} className="mt-20">
+      <motion.div
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{
+          once: true,
+          amount: 0.2,
+          margin: "-30px",
+        }}
+        className="mt-20"
+      >
         <div className="flex items-center justify-center gap-2 text-blue-600 dark:text-blue-400">
           <Cpu className="w-5 h-5 sm:w-8 sm:h-8" />
           <h3 className="text-xl sm:text-3xl font-semibold">
@@ -450,6 +701,13 @@ export default function Experience() {
 
         <motion.div
           variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{
+            once: true,
+            amount: 0.1, // Very small amount for grid items
+            margin: "-30px",
+          }}
           className="mt-10 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-6"
         >
           {tools.map((tool, i) => (
@@ -460,7 +718,10 @@ export default function Experience() {
                 y: -6,
                 scale: 1.05,
               }}
-              transition={{ duration: 0.25 }}
+              transition={{
+                duration: 0.25,
+                delay: i * 0.03, // Stagger the hover effects
+              }}
               className="
           group flex flex-col items-center justify-center
           rounded-3xl border border-gray-200/60 dark:border-gray-800
@@ -481,6 +742,7 @@ export default function Experience() {
                   alt={tool.name}
                   fill
                   className="object-contain"
+                  sizes="(max-width: 768px) 56px, 56px"
                 />
               </div>
 
@@ -496,14 +758,21 @@ export default function Experience() {
       {/* CTA */}
       <motion.div
         variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{
+          once: true,
+          amount: 0.3,
+          margin: "-30px",
+        }}
         className="mt-20 rounded-2xl border border-gray-200/60 dark:border-gray-800 bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-transparent dark:from-blue-500/5 dark:via-indigo-500/20 dark:to-transparent p-8 sm:p-10 text-center backdrop-blur-sm"
       >
         <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-          Let’s build something meaningful together
+          Let's build something meaningful together
         </h3>
         <p className="mt-3 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          Whether it’s a business solution, digital brand presence, or an
-          academic collaboration — we’re ready.
+          Whether it's a business solution, digital brand presence, or an
+          academic collaboration — we're ready.
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">

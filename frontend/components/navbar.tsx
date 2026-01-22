@@ -38,7 +38,7 @@ export default function Navbar() {
     <header className="z-[999] relative">
       {/* Desktop background */}
       <motion.div
-        className="hidden sm:block fixed top-0 left-1/2 h-[4.5rem] w-full rounded-none
+        className="hidden lg:block fixed top-0 left-1/2 h-[4.5rem] w-full rounded-none
             border border-gray-400 border-opacity-40
             bg-transparent bg-opacity-80
             shadow-lg shadow-black/[0.03]
@@ -50,7 +50,7 @@ export default function Navbar() {
       ></motion.div>
 
       {/* Desktop Navigation */}
-      <nav className="hidden sm:flex fixed top-[0.15rem] left-1/2 h-12 -translate-x-1/2 py-2 sm:top-[1.7rem] sm:h-[initial] sm:py-0">
+      <nav className="hidden lg:flex fixed top-[0.15rem] left-1/2 h-12 -translate-x-1/2 py-2 sm:top-[1.7rem] sm:h-[initial] sm:py-0">
         <ul className="flex w-[22rem] flex-wrap items-center justify-center gap-y-1 text-[0.9rem] font-medium text-gray-600 sm:w-[initial] sm:flex-nowrap sm:gap-5">
           {links.map((link) => {
             const IconComponent = link.icon;
@@ -79,7 +79,7 @@ export default function Navbar() {
                   {link.name}
                   {link.name === activeSection && (
                     <motion.span
-                      className="bg-white rounded-full absolute inset-0 -z-10 dark:bg-gray-500"
+                      className="bg-blue-50 rounded-full absolute inset-0 -z-10 dark:bg-gray-500"
                       layoutId="activeSection"
                       transition={{
                         type: "spring",
@@ -96,7 +96,7 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Header */}
-      <div className="sm:hidden fixed top-0 left-0 right-0 h-16 bg-white dark:bg-gray-900 z-30">
+      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white dark:bg-gray-900 z-30">
         <div className="flex items-center justify-between h-full px-6">
           <div className="flex items-center gap-2">
             <h1 className="text-lg font-medium text-gray-900 dark:text-white">
