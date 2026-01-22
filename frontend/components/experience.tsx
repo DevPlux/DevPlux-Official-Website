@@ -11,12 +11,8 @@ import {
   GraduationCap,
   FlaskConical,
   Code2,
-  Smartphone,
   Database,
   Cpu,
-  GitBranch,
-  Figma,
-  Globe,
   Rocket,
   CheckCircle2,
   ArrowRight,
@@ -24,7 +20,6 @@ import {
 
 import ReactLogo from "@/app/images/tools/React.png";
 import NextDarkLogo from "@/app/images/tools/Next.js.png";
-import NextLightLogo from "@/app/images/tools/NextWhite.png";
 import NodeLogo from "@/app/images/tools/Node Js.png";
 import MongoLogo from "@/app/images/tools/MongoDB.png";
 import PythonLogo from "@/app/images/tools/Python.png";
@@ -203,7 +198,7 @@ export default function Experience() {
     <motion.section
       ref={ref}
       id="experience"
-      className="scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 py-10 overflow-x-hidden"
+      className="scroll-mt-28 max-w-7xl mx-auto px-4 sm:px-6 py-10"
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.25 }}
@@ -295,11 +290,11 @@ export default function Experience() {
             {/* bottom accent */}
             <div
               className="
-        absolute bottom-0 left-1/2 h-0.5 w-0
-        bg-gradient-to-r from-transparent via-blue-500 to-transparent
-        transition-all duration-300
-        group-hover:w-16 -translate-x-1/2
-      "
+                absolute bottom-0 left-1/2 h-0.5 w-0
+                bg-gradient-to-r from-transparent via-blue-500 to-transparent
+                transition-all duration-300
+                group-hover:w-16 -translate-x-1/2
+              "
             />
           </motion.div>
         ))}
