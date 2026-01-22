@@ -141,7 +141,7 @@ export default function Services() {
 
       {/* Heading */}
       <div className="max-w-2xl mx-auto text-center">
-        <div className="flex items-center justify-center gap-2 -mb-4 mt-7 text-sm text-blue-600 dark:text-blue-400">
+        <div className="flex items-center justify-center gap-2 sm:-mb-4 mb-5 sm:mt-7 text-sm text-blue-600 dark:text-blue-400">
           <Brain className="w-4 h-4" />
           <span className="font-medium">What We Offer</span>
         </div>
