@@ -92,8 +92,14 @@ export default function Footer() {
 
         {/* Bottom line */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-          <p>© {new Date().getFullYear()} • DevPlux</p>
-          <p>Built with Next.js • Tailwind CSS • Framer Motion</p>
+          <p>
+            © {new Date().getFullYear()} • DevPlux IT Solutions •{" "}
+            <span className="text-red-600">S</span>
+            <span className="text-yellow-300">ri</span>
+            <span className="text-green-400">Lan</span>
+            <span className="text-orange-300">ka</span>{" "}
+          </p>
+          <p>Delivering smart IT solutions from Sri Lanka to the world</p>
         </div>
       </div>
     </footer>

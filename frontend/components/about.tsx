@@ -16,10 +16,11 @@ import {
 } from "lucide-react";
 import SectionHeading from "@/components/section-heading";
 
-import DefaultProfile from "@/app/images/team_profiles/Default.png";
 import JaninduProfile from "@/app/images/team_profiles/Janindu.jpg";
 import ChanukaProfile from "@/app/images/team_profiles/Chanuka.jpeg";
 import LakinduProfile from "@/app/images/team_profiles/Lakindu.png";
+import HarshaProfile from "@/app/images/team_profiles/Harsha.jpeg";
+import SajithProfile from "@/app/images/team_profiles/Sajith.png";
 
 type SocialLinks = {
   github?: string;
@@ -70,7 +71,7 @@ const cardVariants: Variants = {
 const teamMembers: TeamMember[] = [
   {
     name: "Janindu Chamod",
-    role: "Full-Stack Software Engineer, UI/UX Designer, Project Manager",
+    role: "Full-Stack Engineer, UI/UX Designer, Project Manager",
     description:
       "Leads full-stack development, system architecture, UI/UX design, and project coordination to deliver scalable and user-focused solutions.",
     image: JaninduProfile,
@@ -109,12 +110,11 @@ const teamMembers: TeamMember[] = [
     role: "QA Engineer, Content Writer",
     description:
       "Ensures software quality through testing and contributes clear, engaging content to support product communication and documentation.",
-    image: DefaultProfile,
+    image: HarshaProfile,
     icon: Palette,
     links: {
-      github: "https://github.com/",
-      linkedin: "https://linkedin.com/",
-      facebook: "https://twitter.com/",
+      github: "https://github.com/kariyawasam064",
+      linkedin: "https://www.linkedin.com/in/harsha-chathuranga-29254530a",
     },
   },
   {
@@ -122,12 +122,11 @@ const teamMembers: TeamMember[] = [
     role: "Full Stack Developer, Social Media Manager",
     description:
       "Develops full-stack application features while managing social media presence to strengthen product reach and brand engagement.",
-    image: DefaultProfile,
+    image: SajithProfile,
     icon: Users,
     links: {
-      github: "https://github.com/",
-      linkedin: "https://linkedin.com/",
-      facebook: "https://twitter.com/",
+      github: "https://github.com/SajithDahanayake",
+      linkedin: "https://www.linkedin.com/in/sajith-dahanayake",
     },
   },
 ];
