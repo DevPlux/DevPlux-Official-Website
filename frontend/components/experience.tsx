@@ -43,63 +43,6 @@ type AcademicItem = {
   stack: string[];
 };
 
-// Add these animation utilities at the top of your file
-const useTypewriter = (text: string, speed: number = 50, isActive: boolean) => {
-  const [displayText, setDisplayText] = useState("");
-
-  useEffect(() => {
-    if (!isActive) {
-      setDisplayText("");
-      return;
-    }
-
-    let i = 0;
-    const typingInterval = setInterval(() => {
-      if (i <= text.length) {
-        setDisplayText(text.substring(0, i));
-        i++;
-      } else {
-        clearInterval(typingInterval);
-      }
-    }, speed);
-
-    return () => clearInterval(typingInterval);
-  }, [text, speed, isActive]);
-
-  return displayText;
-};
-
-const useCountUp = (
-  end: number,
-  duration: number = 1500,
-  isActive: boolean,
-) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!isActive) {
-      setCount(0);
-      return;
-    }
-
-    let start = 0;
-    const increment = end / (duration / 16); // 60fps
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= end) {
-        setCount(end);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-
-    return () => clearInterval(timer);
-  }, [end, duration, isActive]);
-
-  return count;
-};
-
 const academicWork: AcademicItem[] = [
   {
     title: "Final Year Research Project",
@@ -204,23 +147,23 @@ const highlights = [
   {
     label: "Industry + Academic Blend",
     value: "Strong",
-    animation: "typewriter" as const,
+    type: "text" as const,
   },
   {
     label: "University + Client Projects",
-    value: "10",
-    animation: "countup" as const,
+    value: 10,
+    type: "number" as const,
     suffix: "+",
   },
   {
     label: "Agile Team Workflow",
     value: "Yes",
-    animation: "typewriter" as const,
+    type: "text" as const,
   },
   {
     label: "Research & Experimentation",
     value: "Yes",
-    animation: "typewriter" as const,
+    type: "text" as const,
   },
 ];
 
@@ -288,6 +231,23 @@ function Tag({ children }: { children: React.ReactNode }) {
   );
 }
 
+// Add this helper function at the top
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  return isMobile;
+};
+
 /* -------------------------- COMPONENT -------------------------- */
 
 export default function Experience() {
@@ -317,7 +277,13 @@ export default function Experience() {
       </div>
 
       {/* HERO */}
-      <motion.div variants={fadeUp} className="text-center max-w-3xl mx-auto">
+      <motion.div
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2, margin: "-30px" }}
+        className="text-center max-w-3xl mx-auto"
+      >
         <div className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400">
           <Rocket className="w-5 h-5" />
           <span className="text-sm font-medium">Experience & Work</span>
@@ -342,6 +308,9 @@ export default function Experience() {
       {/* HIGHLIGHTS */}
       <motion.div
         variants={softFade}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.3, margin: "-30px" }}
         className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-5"
       >
         {highlights.map((h, i) => {
@@ -353,65 +322,83 @@ export default function Experience() {
           });
           const [displayValue, setDisplayValue] = useState("");
           const [count, setCount] = useState(0);
-          const valueString = h.value.toString(); // Convert to string for length check
+          const [isAnimating, setIsAnimating] = useState(false);
+          const isMobile = useIsMobile();
+
+          // Reset on mount to prevent stale animations
+          useEffect(() => {
+            setDisplayValue("");
+            setCount(0);
+            setIsAnimating(false);
+          }, []);
 
           // Typewriter effect for text
           useEffect(() => {
-            if (!isInView || !h.value) {
-              setDisplayValue("");
-              return;
-            }
+            if (!isInView || h.type !== "text") return;
 
-            // Check if value is NOT a pure number (contains letters or is text)
-            if (typeof h.value === "string" || isNaN(Number(h.value))) {
-              let i = 0;
-              const textValue = h.value.toString();
-              const typingInterval = setInterval(() => {
-                if (i <= textValue.length) {
-                  setDisplayValue(textValue.substring(0, i));
-                  i++;
-                } else {
-                  clearInterval(typingInterval);
-                }
-              }, 50);
+            setIsAnimating(true);
+            const textValue = String(h.value);
+            setDisplayValue(""); // Start empty
 
-              return () => clearInterval(typingInterval);
-            }
-          }, [isInView, h.value]);
+            let i = 0;
+            const typingSpeed = isMobile ? 80 : 50; // Slower on mobile for reliability
+
+            const typingInterval = setInterval(() => {
+              if (i <= textValue.length) {
+                setDisplayValue(textValue.substring(0, i));
+                i++;
+              } else {
+                clearInterval(typingInterval);
+                setTimeout(() => setIsAnimating(false), 300); // Small delay after completion
+              }
+            }, typingSpeed);
+
+            return () => {
+              clearInterval(typingInterval);
+              setIsAnimating(false);
+            };
+          }, [isInView, h.type, h.value, isMobile]);
 
           // Count-up effect for numbers
           useEffect(() => {
-            if (!isInView) {
-              setCount(0);
-              return;
-            }
+            if (!isInView || h.type !== "number") return;
 
-            // Check if value is a pure number
+            setIsAnimating(true);
             const numValue = Number(h.value);
-            if (!isNaN(numValue) && typeof h.value !== "boolean") {
-              const duration = 1500;
-              const increment = numValue / (duration / 16);
+            setCount(0); // Start from 0
 
-              let start = 0;
-              const timer = setInterval(() => {
-                start += increment;
-                if (start >= numValue) {
-                  setCount(numValue);
-                  clearInterval(timer);
-                } else {
-                  setCount(Math.floor(start));
-                }
-              }, 16);
+            const duration = isMobile ? 2000 : 1500; // Longer on mobile
+            const steps = duration / 16; // ~60fps
+            const increment = numValue / steps;
 
-              return () => clearInterval(timer);
-            }
-          }, [isInView, h.value]);
+            let current = 0;
+            let step = 0;
 
-          // Determine if this is a number or text
-          const isNumber =
-            !isNaN(Number(h.value)) && typeof h.value !== "boolean";
+            const countInterval = setInterval(() => {
+              step++;
+              current += increment;
+
+              if (step >= steps || current >= numValue) {
+                setCount(numValue);
+                clearInterval(countInterval);
+                setTimeout(() => setIsAnimating(false), 300); // Small delay after completion
+              } else {
+                setCount(Math.floor(current));
+              }
+            }, 16);
+
+            return () => {
+              clearInterval(countInterval);
+              setIsAnimating(false);
+            };
+          }, [isInView, h.type, h.value, isMobile]);
+
+          // Calculate if cursor should be shown
           const shouldShowCursor =
-            isInView && displayValue.length < valueString.length;
+            isInView &&
+            isAnimating &&
+            h.type === "text" &&
+            displayValue.length < String(h.value).length;
 
           return (
             <motion.div
@@ -429,8 +416,8 @@ export default function Experience() {
                 margin: "-20px",
               }}
               transition={{
-                delay: i * 0.08,
-                duration: 0.5,
+                delay: i * 0.1,
+                duration: 0.6,
                 type: "spring",
                 stiffness: 120,
                 damping: 16,
@@ -445,46 +432,56 @@ export default function Experience() {
                 rounded-2xl border border-gray-200/60 dark:border-gray-800
                 bg-white/70 dark:bg-gray-900/70
                 backdrop-blur-md
-                p-5 text-left
+                sm:p-6 p-5 text-left
                 transition-all
+                min-h-[100px] sm:min-h-[100px]
               "
             >
               {/* subtle glow on hover */}
               <div
                 className="
-                  pointer-events-none absolute inset-0 opacity-0
-                  group-hover:opacity-100 transition duration-300
-                "
+                pointer-events-none absolute inset-0 opacity-0
+                group-hover:opacity-100 transition duration-300
+              "
               >
                 <div className="absolute -inset-px bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-transparent" />
               </div>
 
               {/* label */}
-              <p className="relative z-10 text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+              <p className="relative z-10 text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-4">
                 {h.label}
               </p>
 
               {/* animated value */}
-              <p className="relative z-10 mt-2 sm:text-3xl text-2xl uppercase font-semibold text-gray-900 dark:text-white min-h-[28px]">
-                {isNumber ? (
-                  <span className="tabular-nums">
-                    {count}
-                    <span className="text-blue-600 dark:text-blue-400 ml-0.5">
-                      {typeof h.value === "string" && h.value.includes("+")
-                        ? "+"
-                        : ""}
+              <div className="relative z-10">
+                {h.type === "number" ? (
+                  <div className="flex items-end">
+                    <span className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white tabular-nums">
+                      {count}
                     </span>
-                  </span>
+                    {h.suffix && (
+                      <span className="text-lg sm:text-2xl text-blue-600 dark:text-blue-400 ml-1 font-bold">
+                        {h.suffix}
+                      </span>
+                    )}
+                  </div>
                 ) : (
-                  <span>
-                    {displayValue}
+                  <div className="relative">
+                    <span className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white uppercase tracking-wide">
+                      {displayValue}
+                    </span>
                     {/* Blinking cursor for typewriter effect */}
                     {shouldShowCursor && (
-                      <span className="ml-0.5 w-[2px] h-5 bg-blue-500 dark:bg-blue-400 inline-block animate-pulse" />
+                      <span className="absolute -right-1 top-0 w-[2px] h-7 bg-blue-500 dark:bg-blue-400 animate-pulse" />
                     )}
-                  </span>
+                  </div>
                 )}
-              </p>
+              </div>
+
+              {/* Loading skeleton for mobile (hidden after load) */}
+              {isMobile && isAnimating && (
+                <div className="absolute inset-0 bg-white/50 dark:bg-gray-900/50 rounded-2xl animate-pulse" />
+              )}
 
               {/* bottom accent */}
               <div
