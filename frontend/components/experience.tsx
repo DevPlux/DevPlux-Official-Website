@@ -34,57 +34,63 @@ import PringBootLogo from "@/app/images/tools/Spring.png";
 import KotlinLogo from "@/app/images/tools/Kotlin.png";
 import DotnetLogo from "@/app/images/tools/NET core.png";
 import FirebaseLogo from "@/app/images/tools/Firebase.png";
+import { BsChat } from "react-icons/bs";
 
-type AcademicItem = {
+type WorkItem = {
   title: string;
-  type: "Final Year Research" | "University Project" | "Assignments";
+  type: "Enterprise Solution" | "Product Development" | "Client Project";
   description: string;
   highlights: string[];
   stack: string[];
 };
 
-const academicWork: AcademicItem[] = [
+const professionalWork: WorkItem[] = [
   {
-    title: "Final Year Research Project",
-    type: "Final Year Research",
+    title: "Enterprise Business Solutions",
+    type: "Enterprise Solution",
     description:
-      "A research-driven system focused on applying artificial intelligence and data-driven techniques to solve a real-world industrial problem with real-time analysis.",
+      "Full-scale business management systems and internal tools designed to streamline operations, automate workflows, and improve decision-making for growing companies.",
     highlights: [
-      "Experimentation and evaluation of multiple models and approaches.",
-      "End-to-end system pipeline from data collection to visualization.",
-      "Academic-level documentation, analysis, and formal result reporting.",
+      "Custom CRM, ERP, and inventory management systems.",
+      "Real-time analytics dashboards with actionable insights.",
+      "Role-based access control and multi-tenant architecture.",
+      "Integration with existing business tools and APIs.",
     ],
-    stack: [
-      "Artificial Intelligence",
-      "Machine Learning",
-      "Data Analysis",
-      "System Design",
-    ],
+    stack: ["React", "Node.js", "MongoDB", ".NET", "PostgreSQL", "REST APIs"],
   },
 
   {
-    title: "Full-Stack University Projects",
-    type: "University Project",
+    title: "SaaS Products & Platforms",
+    type: "Product Development",
     description:
-      "Individual and group projects covering full-stack web apps, mobile apps, and applied system design.",
+      "Scalable software-as-a-service products built for specific market needs, from MVP to production-ready platforms with subscription management and user analytics.",
     highlights: [
-      "Authentication, role-based dashboards, CRUD workflows.",
-      "Clean architecture + reusable UI components.",
-      "Testing and project documentation aligned with SE standards.",
+      "Subscription billing and user management integration.",
+      "Multi-tenant database architecture.",
+      "Analytics dashboards and usage tracking.",
+      "Continuous deployment and feature rollouts.",
     ],
-    stack: ["React", "Next.js", ".NET", "Node.js", "MongoDB", "Tailwind"],
+    stack: [
+      "Next.js",
+      "Firebase",
+      "Stripe",
+      "Tailwind",
+      "TypeScript",
+      "Vercel",
+    ],
   },
   {
-    title: "Assignments & Coursework Builds",
-    type: "Assignments",
+    title: "Client Web Applications",
+    type: "Client Project",
     description:
-      "Coursework assignments focused on problem-solving, SE principles, system design, and technical writing.",
+      "Custom web applications delivered for clients across various industries — from e-commerce platforms to service booking systems and business portals.",
     highlights: [
-      "Requirement analysis and structured documentation.",
-      "Design diagrams (DFD/UML) + clean implementation.",
-      "Presentation-ready reports and demos.",
+      "Requirements gathering and solution architecture.",
+      "Responsive, performant frontend with modern UI/UX.",
+      "Secure authentication and data protection.",
+      "Post-launch support and maintenance.",
     ],
-    stack: ["Git", "Docs", "UML/DFD", "Programming Fundamentals"],
+    stack: ["React/Next.js", "Node.js", "MySQL", "Docker", "AWS", "Git"],
   },
 ];
 
@@ -145,24 +151,26 @@ const tools: ToolItem[] = [
 
 const highlights = [
   {
-    label: "Industry + Academic Blend",
-    value: "Strong",
-    type: "text" as const,
-  },
-  {
-    label: "University + Client Projects",
-    value: 10,
+    label: "Enterprise Projects Delivered", // Changed from "Industry + Academic Blend"
+    value: 4, // Updated to a realistic number
     type: "number" as const,
     suffix: "+",
   },
   {
-    label: "Agile Team Workflow",
-    value: "Yes",
-    type: "text" as const,
+    label: "Active Clients", // Changed from "University + Client Projects"
+    value: 5,
+    type: "number" as const,
+    suffix: "+",
   },
   {
-    label: "Research & Experimentation",
-    value: "Yes",
+    label: "Products Launched", // Changed from "Agile Team Workflow"
+    value: 5,
+    type: "number" as const,
+    suffix: "",
+  },
+  {
+    label: "Client Retention", // Changed from "Research & Experimentation"
+    value: "95%",
     type: "text" as const,
   },
 ];
@@ -292,16 +300,17 @@ export default function Experience() {
         <SectionHeading>Experience</SectionHeading>
 
         <p className="mt-4 text-gray-600 dark:text-gray-400 leading-relaxed">
-          Hands-on industry experience combined with university projects and
-          research-driven development — built for real outcomes.
+          Professional software development with enterprise solutions, SaaS
+          products, and client-focused deliverables — built for real business
+          outcomes.
         </p>
 
         {/* mini tags */}
         <div className="mt-6 flex flex-wrap justify-center gap-2">
-          <Tag>Industry</Tag>
-          <Tag>University Projects</Tag>
-          <Tag>Research</Tag>
-          <Tag>Startup / Client Work</Tag>
+          <Tag>Enterprise</Tag>
+          <Tag>SaaS Products</Tag>
+          <Tag>Client Work</Tag>
+          <Tag>Startup Solutions</Tag>
         </div>
       </motion.div>
 
@@ -514,20 +523,20 @@ export default function Experience() {
         }}
       >
         <div className="flex items-center justify-center gap-2 text-blue-600 dark:text-blue-400">
-          <GraduationCap className="w-5 sm:w-8  h-5 sm:h-8 " />
+          <BriefcaseBusiness className="w-5 sm:w-8 h-5 sm:h-8" />
           <h3 className="sm:text-3xl text-xl font-semibold">
-            University & Academic Work
+            Professional Projects & Solutions{" "}
           </h3>
         </div>
 
         <p className="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-          Academic projects, assignments, and research-focused builds that
-          sharpen real-world engineering skills — from system design to
-          experimentation and documentation.
+          Enterprise-grade solutions, SaaS products, and custom client
+          applications — built with scalability, performance, and production
+          readiness in mind.
         </p>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {academicWork.map((item, i) => (
+          {professionalWork.map((item, i) => (
             <motion.div
               key={i}
               variants={fadeUp}
@@ -565,12 +574,12 @@ export default function Experience() {
                 </div>
 
                 <div className="shrink-0 rounded-xl bg-blue-500/10 text-blue-700 dark:text-blue-300 p-2">
-                  {item.type === "Final Year Research" ? (
-                    <FlaskConical className="w-5 h-5" />
-                  ) : item.type === "University Project" ? (
-                    <Code2 className="w-5 h-5" />
+                  {item.type === "Enterprise Solution" ? (
+                    <BriefcaseBusiness className="w-5 h-5" />
+                  ) : item.type === "Product Development" ? (
+                    <Rocket className="w-5 h-5" />
                   ) : (
-                    <Database className="w-5 h-5" />
+                    <Code2 className="w-5 h-5" />
                   )}
                 </div>
               </div>
@@ -781,7 +790,7 @@ export default function Experience() {
             className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-3 text-white font-medium transition-all hover:shadow-lg hover:shadow-blue-500/30"
           >
             <BriefcaseBusiness className="w-5 h-5" />
-            Start a Business
+            Start a Projects
             <ArrowRight className="w-5 h-5 opacity-80 group-hover:translate-x-1 transition" />
           </Link>
 
@@ -789,11 +798,9 @@ export default function Experience() {
             href="#contact"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-white/70 dark:bg-gray-900/70 border border-gray-300/50 dark:border-gray-700/50 px-7 py-3 text-gray-900 dark:text-gray-100 font-medium transition-all hover:bg-white dark:hover:bg-gray-900"
           >
-            <GraduationCap className="w-5 h-5" />
-            <span className="sm:hidden">Academic / University</span>
-            <span className="hidden sm:inline">
-              Academic / University Collaboration
-            </span>
+            <BsChat className="w-5 h-5 text-blue-700" />
+            <span className="sm:hidden">Work With Us</span>
+            <span className="hidden sm:inline">Start a Conversation</span>
           </Link>
         </div>
       </motion.div>
