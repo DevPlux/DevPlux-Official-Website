@@ -47,7 +47,7 @@ const fadeUp: Variants = {
 export default function Contact() {
   const { ref } = useSectionInView("Contact", 0.5);
   const [contactType, setContactType] = useState<
-    "Business" | "Academic" | "General"
+    "Business" | "Project" | "General"
   >("Business");
   const [isSending, setIsSending] = useState(false);
 
@@ -102,8 +102,9 @@ export default function Contact() {
         <SectionHeading>Contact Us</SectionHeading>
 
         <p className="mt-4 text-gray-600 dark:text-gray-400 leading-relaxed">
-          Whether you're planning a business solution, academic project, or
-          research collaboration — we're ready to help.
+          Whether you're planning a business solution, launching a product, or
+          need technical consultation — we're ready to help bring your ideas to
+          life.
         </p>
       </motion.div>
 
@@ -127,17 +128,17 @@ export default function Contact() {
         </button>
 
         <button
-          onClick={() => setContactType("Academic")}
+          onClick={() => setContactType("Project")}
           className={`px-5 py-2 rounded-full text-sm font-medium transition
             ${
-              contactType === "Academic"
+              contactType === "Project"
                 ? "bg-indigo-600 text-white"
                 : "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
             } ${isSending ? "opacity-50 cursor-not-allowed" : ""}`}
           disabled={isSending}
         >
           <GraduationCap className="inline w-4 h-4 mr-1" />
-          Academic / University
+          Custom Web App
         </button>
 
         <button
@@ -365,10 +366,10 @@ export default function Contact() {
               required
               rows={4}
               placeholder={
-                contactType === "Academic"
-                  ? "Tell us about your university or research project..."
+                contactType === "Project"
+                  ? "Tell us about your product idea or project requirements..."
                   : contactType === "Business"
-                    ? "Tell us about your business idea or requirements..."
+                    ? "Tell us about your business needs or challenges..."
                     : "Write your message..."
               }
               className="mt-2 w-full rounded-xl border border-gray-300/60 dark:border-gray-700 bg-transparent px-4 py-2.5 text-sm outline-none focus:border-blue-500 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
