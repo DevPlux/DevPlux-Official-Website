@@ -26,7 +26,7 @@ export default function Footer() {
             </h4>
             <p className="mt-3 leading-relaxed">
               Crafting modern software solutions for businesses, startups, and
-              academic innovation.
+              digital products.
             </p>
           </div>
 

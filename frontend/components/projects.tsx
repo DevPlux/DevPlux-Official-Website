@@ -136,87 +136,87 @@ export default function Projects() {
       animate={{ opacity: 1 }}
     >
       {/* University Projects Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="text-left relative"
-      >
-        {/* Heading */}
-        <div className="max-w-2xl mb-14 mx-auto text-center">
-          <div className="flex items-center justify-center gap-2 mb-4 text-sm text-blue-600 dark:text-blue-400">
-            <GraduationCap className="w-4 h-4" />
-            <span className="font-medium">Academic & Research</span>
-          </div>
+      {/*<motion.div*/}
+      {/*  initial={{ opacity: 0, y: 40 }}*/}
+      {/*  whileInView={{ opacity: 1, y: 0 }}*/}
+      {/*  viewport={{ once: true }}*/}
+      {/*  transition={{ duration: 0.6 }}*/}
+      {/*  className="text-left relative"*/}
+      {/*>*/}
+      {/*  /!* Heading *!/*/}
+      {/*  <div className="max-w-2xl mb-14 mx-auto text-center">*/}
+      {/*    <div className="flex items-center justify-center gap-2 mb-4 text-sm text-blue-600 dark:text-blue-400">*/}
+      {/*      <GraduationCap className="w-4 h-4" />*/}
+      {/*      <span className="font-medium">Academic & Research</span>*/}
+      {/*    </div>*/}
 
-          {/* Decorative blobs (desktop only) */}
-          <div className="hidden sm:block pointer-events-none absolute left-1/2 -translate-x-1/2 -z-10">
-            <div className="absolute -top-40 -left-[48rem] h-[32rem] w-[32rem] rounded-full bg-blue-500/20 dark:bg-blue-500/30 blur-3xl" />
-          </div>
+      {/*    /!* Decorative blobs (desktop only) *!/*/}
+      {/*    <div className="hidden sm:block pointer-events-none absolute left-1/2 -translate-x-1/2 -z-10">*/}
+      {/*      <div className="absolute -top-40 -left-[48rem] h-[32rem] w-[32rem] rounded-full bg-blue-500/20 dark:bg-blue-500/30 blur-3xl" />*/}
+      {/*    </div>*/}
 
-          <SectionHeading>University Projects</SectionHeading>
+      {/*    <SectionHeading>University Projects</SectionHeading>*/}
 
-          <p className="mt-3 text-gray-600 dark:text-gray-400">
-            Selected academic and research projects developed as part of
-            university coursework and applied research initiatives.
-          </p>
-        </div>
+      {/*    <p className="mt-3 text-gray-600 dark:text-gray-400">*/}
+      {/*      Selected academic and research projects developed as part of*/}
+      {/*      university coursework and applied research initiatives.*/}
+      {/*    </p>*/}
+      {/*  </div>*/}
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {universityProjects.map((project, i) => {
-            const Icon = project.icon;
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 50, scale: 0.94 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{
-                  duration: 0.6,
-                  delay: i * 0.12,
-                  type: "spring",
-                  stiffness: 120,
-                  damping: 18,
-                }}
-                whileHover={{
-                  y: -8,
-                  scale: 1.02,
-                  transition: { duration: 0.25 },
-                }}
-                className="group relative rounded-3xl border border-gray-200/70 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 overflow-hidden"
-              >
-                {/* Hover glow */}
-                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300">
-                  <div className="absolute -inset-px bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-transparent" />
-                </div>
+      {/*  /!* Projects Grid *!/*/}
+      {/*  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">*/}
+      {/*    {universityProjects.map((project, i) => {*/}
+      {/*      const Icon = project.icon;*/}
+      {/*      return (*/}
+      {/*        <motion.div*/}
+      {/*          key={i}*/}
+      {/*          initial={{ opacity: 0, y: 50, scale: 0.94 }}*/}
+      {/*          whileInView={{ opacity: 1, y: 0, scale: 1 }}*/}
+      {/*          viewport={{ once: true, amount: 0.3 }}*/}
+      {/*          transition={{*/}
+      {/*            duration: 0.6,*/}
+      {/*            delay: i * 0.12,*/}
+      {/*            type: "spring",*/}
+      {/*            stiffness: 120,*/}
+      {/*            damping: 18,*/}
+      {/*          }}*/}
+      {/*          whileHover={{*/}
+      {/*            y: -8,*/}
+      {/*            scale: 1.02,*/}
+      {/*            transition: { duration: 0.25 },*/}
+      {/*          }}*/}
+      {/*          className="group relative rounded-3xl border border-gray-200/70 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 overflow-hidden"*/}
+      {/*        >*/}
+      {/*          /!* Hover glow *!/*/}
+      {/*          <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300">*/}
+      {/*            <div className="absolute -inset-px bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-transparent" />*/}
+      {/*          </div>*/}
 
-                {/* Icon */}
-                <motion.div
-                  whileHover={{ rotate: 6, scale: 1.12 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 relative z-10"
-                >
-                  <Icon className="w-6 h-6" />
-                </motion.div>
+      {/*          /!* Icon *!/*/}
+      {/*          <motion.div*/}
+      {/*            whileHover={{ rotate: 6, scale: 1.12 }}*/}
+      {/*            transition={{ type: "spring", stiffness: 300 }}*/}
+      {/*            className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 relative z-10"*/}
+      {/*          >*/}
+      {/*            <Icon className="w-6 h-6" />*/}
+      {/*          </motion.div>*/}
 
-                {/* Content */}
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white relative z-10">
-                  {project.title}
-                </h3>
+      {/*          /!* Content *!/*/}
+      {/*          <h3 className="text-lg font-semibold text-gray-900 dark:text-white relative z-10">*/}
+      {/*            {project.title}*/}
+      {/*          </h3>*/}
 
-                <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 leading-relaxed relative z-10">
-                  {project.description}
-                </p>
+      {/*          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 leading-relaxed relative z-10">*/}
+      {/*            {project.description}*/}
+      {/*          </p>*/}
 
-                {/* Bottom accent line */}
-                <div className="absolute bottom-0 left-1/2 h-0.5 w-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent transition-all duration-300 group-hover:w-24 -translate-x-1/2" />
-              </motion.div>
-            );
-          })}
-        </div>
-      </motion.div>
+      {/*          /!* Bottom accent line *!/*/}
+      {/*          <div className="absolute bottom-0 left-1/2 h-0.5 w-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent transition-all duration-300 group-hover:w-24 -translate-x-1/2" />*/}
+      {/*        </motion.div>*/}
+      {/*      );*/}
+      {/*    })}*/}
+      {/*  </div>*/}
+      {/*</motion.div>*/}
 
       {/* ================= PROJECT THUMBNAILS SECTION ================= */}
       <motion.div
@@ -224,7 +224,7 @@ export default function Projects() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="mt-20 relative"
+        className="-mt-6 relative"
       >
         {/* Heading for Thumbnails */}
         <div className="max-w-2xl mb-14 mx-auto text-center">
@@ -382,11 +382,11 @@ export default function Projects() {
           {/* CTA Heading */}
           <div className="text-center max-w-2xl mx-auto">
             <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-3">
-              Let's build something meaningful together
+              Ready to bring your vision to life?
             </h3>
             <p className="text-gray-600 dark:text-gray-300">
-              Whether it's a commercial product, digital brand presence, or an
-              academic project — we're ready to collaborate.
+              Whether you need a custom web application, mobile solution, or
+              digital brand presence — let's turn your ideas into reality.
             </p>
           </div>
 
@@ -402,7 +402,7 @@ export default function Projects() {
               Social Media & Branding
             </span>
             <span className="px-4 py-1.5 rounded-full bg-green-500/10 text-green-600 dark:text-green-400">
-              Academic & Research Work
+              Enterprise Solutions
             </span>
           </div>
 
@@ -442,11 +442,11 @@ export default function Projects() {
               <GraduationCap className="w-5 h-5" />
 
               {/* Mobile */}
-              <span className="sm:hidden">Academic / University</span>
+              <span className="sm:hidden">Technical Consultation</span>
 
               {/* Desktop */}
               <span className="hidden sm:inline">
-                Academic / University Collaboration
+                Discuss Your Technical Requirements
               </span>
             </motion.button>
           </div>
