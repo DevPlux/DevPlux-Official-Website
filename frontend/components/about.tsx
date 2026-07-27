@@ -10,6 +10,7 @@ import {
   HeartHandshake,
   Rocket,
   ShieldCheck,
+  type LucideIcon,
 } from "lucide-react";
 import SectionHeading from "@/components/section-heading";
 
@@ -47,7 +48,7 @@ const cardVariants: Variants = {
 type CoreValue = {
   title: string;
   description: string;
-  icon: React.ElementType;
+  icon: LucideIcon;
 };
 
 const coreValues: CoreValue[] = [
