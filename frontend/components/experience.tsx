@@ -34,6 +34,12 @@ import PringBootLogo from "@/app/images/tools/Spring.png";
 import KotlinLogo from "@/app/images/tools/Kotlin.png";
 import DotnetLogo from "@/app/images/tools/NET core.png";
 import FirebaseLogo from "@/app/images/tools/Firebase.png";
+import AWSLogo from "@/app/images/tools/AWS.png";
+import VueLogo from "@/app/images/tools/Vue.js.png";
+import NestLogo from "@/app/images/tools/Nest.js.png";
+import PostgreSQLLogo from "@/app/images/tools/PostgresSQL.png";
+import GoogleCloudLogo from "@/app/images/tools/Google Cloud.png";
+
 import { BsChat } from "react-icons/bs";
 
 type WorkItem = {
@@ -147,6 +153,11 @@ const tools: ToolItem[] = [
   { name: "Kotlin", logo: KotlinLogo },
   { name: ".NET", logo: DotnetLogo },
   { name: "Firebase", logo: FirebaseLogo },
+  { name: "AWS", logo: AWSLogo },
+  { name: "Vue.js", logo: VueLogo },
+  { name: "PostgreSQL", logo: PostgreSQLLogo },
+  { name: "Nest.js", logo: NestLogo },
+  { name: "GoogleCloud", logo: GoogleCloudLogo },
 ];
 
 const highlights = [

@@ -37,6 +37,17 @@ type ProjectThumbnail = {
 const projectThumbnails: ProjectThumbnail[] = [
   {
     id: 1,
+    title: "GoMirissa",
+    category: "Production Web Application",
+    description:
+      "Production-ready boat tour booking platform for exploring and booking deep-sea fishing, whale watching, and snorkeling adventures in Mirissa.",
+    image: Project4,
+    tech: ["Next.js", "TypeScript", "Firebase", "Tailwind CSS"],
+    liveUrl: "https://www.gomirissa.com/",
+    githubUrl: "",
+  },
+  {
+    id: 2,
     title: "Sri Lanka Travel Platform",
     category: "Tourism Web Platform",
     description:
@@ -47,7 +58,7 @@ const projectThumbnails: ProjectThumbnail[] = [
     githubUrl: "",
   },
   {
-    id: 2,
+    id: 3,
     title: "Real Estate Management System",
     category: "Mobile Application",
     description:
@@ -58,24 +69,13 @@ const projectThumbnails: ProjectThumbnail[] = [
     githubUrl: "",
   },
   {
-    id: 3,
+    id: 4,
     title: "Startup Website Design",
     category: "UI/UX Design",
     description:
       "Modern website design for a tech startup with responsive layouts, interactive components, and brand-consistent visual identity.",
     image: Project3,
     tech: ["Figma", "Prototyping", "Figma AI"],
-    liveUrl: "",
-    githubUrl: "",
-  },
-  {
-    id: 4,
-    title: "Healthcare Management System",
-    category: "Web Application",
-    description:
-      "Full-featured healthcare platform for patient management, appointment scheduling, medical records, and analytics dashboard.",
-    image: Project4,
-    tech: ["React", "Node.js", "SQL Server", "Chart.js"],
     liveUrl: "",
     githubUrl: "",
   },
@@ -100,27 +100,6 @@ const projectThumbnails: ProjectThumbnail[] = [
     tech: ["React", "GSAP", "Framer Motion", "Three.js"],
     liveUrl: "https://puuung.vercel.app/",
     githubUrl: "",
-  },
-];
-
-const universityProjects = [
-  {
-    title: "Academic Assignments",
-    description:
-      "Coursework-based assignments focused on software engineering principles, system design, problem-solving, and technical documentation.",
-    icon: BookOpen,
-  },
-  {
-    title: "University Projects",
-    description:
-      "Individual and group projects developed as part of university programs, covering full-stack development, IoT systems, and applied computing.",
-    icon: GraduationCap,
-  },
-  {
-    title: "Research & Experimental Work",
-    description:
-      "Research-oriented work including experimentation, model evaluation, data analysis, and prototype development for academic studies.",
-    icon: FlaskConical,
   },
 ];
 
