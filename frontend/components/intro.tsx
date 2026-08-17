@@ -199,6 +199,18 @@ export default function Intro() {
           <BsGithub className="hover:text-purple-500 transition duration-300 ease-in" />
         </a>
 
+        {/*INSTAGRAM LINK*/}
+        <a
+          className={`bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-pink-600 hover:scale-[1.15]
+              active:scale-105 transition cursor-not-allowed border border-black/10 dark:text-white/60 dark:bg-white/10 relative
+               group`}
+          href="https://www.instagram.com/devplux.info/"
+          onClick={(e) => e.preventDefault()}
+          aria-disabled="true"
+        >
+          <BsInstagram className="hover:text-pink-600 transition duration-300 ease-in" />
+        </a>
+
         {/*LINKEDIN LINK*/}
         <a
           className={`bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-blue-500 hover:scale-[1.15]
@@ -213,24 +225,6 @@ export default function Intro() {
           {/* Custom Tooltip */}
           <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
             LinkedIn currently unavailable
-            <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-800 rotate-45"></span>
-          </span>
-        </a>
-
-        {/*INSTAGRAM LINK*/}
-        <a
-          className={`bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-pink-600 hover:scale-[1.15]
-              active:scale-105 transition cursor-not-allowed border border-black/10 dark:text-white/60 dark:bg-white/10 relative
-               group`}
-          href="#"
-          onClick={(e) => e.preventDefault()}
-          aria-disabled="true"
-        >
-          <BsInstagram className="hover:text-pink-600 transition duration-300 ease-in" />
-
-          {/* Custom Tooltip */}
-          <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
-            Instagram currently unavailable
             <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-800 rotate-45"></span>
           </span>
         </a>
