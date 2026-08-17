@@ -202,7 +202,7 @@ export default function Intro() {
         {/*INSTAGRAM LINK*/}
         <a
           className={`bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:text-pink-600 hover:scale-[1.15]
-              active:scale-105 transition cursor-not-allowed border border-black/10 dark:text-white/60 dark:bg-white/10 relative
+              active:scale-105 transition cursor-grab border border-black/10 dark:text-white/60 dark:bg-white/10 relative
                group`}
           href="https://www.instagram.com/devplux.info/"
           onClick={(e) => e.preventDefault()}
